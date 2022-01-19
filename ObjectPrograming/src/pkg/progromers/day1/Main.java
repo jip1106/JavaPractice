@@ -11,14 +11,14 @@ public class Main {
 		
 		
 		int answer[] = s.solution(id_list, report, k);
-		/*
+		
 		int answerLength = answer.length;
 		System.out.println(answerLength);
 		for(int i=0; i<answerLength;i++){
 			
 			System.out.print(answer[i] + " ");
 		}
-		*/
+		
 		
 
 	}

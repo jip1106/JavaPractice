@@ -1,7 +1,6 @@
 package pkg.progromers.day1;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 //day1 신고결과 받기
@@ -12,57 +11,52 @@ public class Solution1 {
 //	각 유저별로 처리  결과 메일을 받은 횟수를 배열에 담아 return
 	public int[] solution(String[] id_list, String[] report, int k){
 		int[] answer = {};
+		int userLen = id_list.length;
+		answer = new int[userLen];
 		
-		ArrayList<String> list1 = new ArrayList<String>();		// 신고한 사람
-		ArrayList<String> list2 = new ArrayList<String>();		// 신고 당한 사람
+		//이용자와 idx 를 담을 맵
+		HashMap<String, Integer> idxMap = new HashMap<String, Integer>();	 
+
+		//key:신고 당한사람 	id	value: 신고한 사람의 idx를 기록할 list
+		HashMap<String, ArrayList<Integer>> listMap = new HashMap<String, ArrayList<Integer>>(); 	
 		
-		int reportLen = report.length;
-		
-		for(int i=0; i < reportLen; i++){
-			String list1Val = report[i].split("\\s")[0];
-			String list2Val = report[i].split("\\s")[1];
-			
-			list1.add(list1Val);
-			list2.add(list2Val);
+		//이용자id, idx 를 차례대로 맵에 담음
+		for(int i=0; i<userLen; i++){
+			idxMap.put(id_list[i], i);
 		}
 		
-		//resultMap => key(신고 한 사람) value(신고 횟수)
-		HashMap<String,Integer> resultMap = new HashMap<String, Integer>();
-		
-		
-		//tmpMap 에는 신고당한 사람, 신고당한 횟수가 들어 있음(한 사람이 같은 사람을 신고해도 카운팅 되어 있는 상태)
-		HashMap<String,Integer> tmpMap = new HashMap<String,Integer>();
-		list2.forEach(str -> tmpMap.put(str, Collections.frequency(list2, str)));
-
-		tmpMap.forEach((key, value) -> {
-			System.out.println(key + " : " + value);
+		//report => A B 형식 , A가 B를 신고
+		ArrayList<Integer> tmp = null;
+		for(String reportVal : report){
+			String[] idArr = reportVal.split("\\s");
+			String AId = idArr[0];		//신고한 사람
+			String BId	  = idArr[1];		//신고 당한사람
 			
-			if(value >= k){
-				
+			if( !listMap.containsKey(BId)){
+				listMap.put(BId, new ArrayList<Integer>());
 			}
-			System.out.println("");
-		});
-		
-		
-		
-		tmpMap.forEach((key, value) -> {
-			System.out.println(key + " : " + value);
-		});
-		
-		return null;
-
-		/*
-		
-		//resultMap => key:신고 한 사람 , value : 메일 받는 횟수
-		answer = new int[reportLen];
-		
-		for(int i=0; i< reportLen; i++){
-			answer[i] = resultMap.get(id_list[i]);
-		}
 			
+			//중복제거
+			tmp = listMap.get(BId);
+			if(!tmp.contains(idxMap.get(AId))){
+				tmp.add(idxMap.get(AId));
+			}
+		}
+		
+		
+		for(int i=0 ; i<userLen; i++) {
+        	String userId = id_list[i];
+        	//조건체크
+        	if(listMap.containsKey(userId) && listMap.get(userId).size() >= k) {
+	        	for(int idx : listMap.get(userId)) {
+	        		System.out.println("idx :: " + idx);
+	        		answer[idx]++;
+	        	}
+	        	
+        	}
+        }
 		
 		return answer;
-		*/
 	}
 
 }
