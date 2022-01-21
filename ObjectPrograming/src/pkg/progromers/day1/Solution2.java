@@ -2,37 +2,44 @@ package pkg.progromers.day1;
 
 public class Solution2 {
 	public int solution(String s){
-		int answer = 0;
-		
-		//앞에서부터 몇 글자 단위로 자를건지 체크 필요
-		int tokenSize = splitTokenSize(s);
-		
-		answer = getResult(s,tokenSize);
-		
-		return answer;
-	}
-	
-	//몇글자로 자를지 사이즈를 구하는 함수
-	private int splitTokenSize(String s){
-		int rtnVal=0;
-		int sLength = s.length();
-		
-		int rangeLength = sLength / 2; 
-		
-		//abcabcd => 3.5 => 3 
-		
-		for(int i=1; i<rangeLength+1; i++){
-			
-		}
-		
-		return rtnVal;
-	}
-	
-	//결과 리턴 함수
-	private int getResult(String s, int tokenSize){
-		int rtnVal = s.length();
-		
-		return rtnVal;
+		int answer = s.length();
+        int strTokenSize = s.length()/2;
+	        
+	    if(!(answer==1)){
+	        for(int i=1; i<strTokenSize+1; i++) {
+	        	String dupStr  = s.substring(0,i);	//반복되는 값
+	        	int cnt =1;
+	        	String rtnVal="";			//결과값
+	        	
+	        	
+	        	//압축
+	        	for(int j=i; j<=s.length()-i; j=j+i){
+	        		//System.out.println("j  :: " + j);
+	        		if(dupStr.equals(s.substring(j,j+i))){	//반복값을 압축할수 있는지 확인
+	    				cnt++;
+	    			}else {
+	    				if(cnt>1) {
+	    					rtnVal += cnt+"";
+	    				}
+	    				rtnVal += dupStr;
+	   				    dupStr= s.substring(j,j+i);
+	    				cnt=1;
+	    			}
+	        	}
+	        	
+	        	if(cnt>1) {
+	        		rtnVal += ""+cnt;
+	    		}
+	        	rtnVal += dupStr;
+	    		
+	        	//System.out.println("===" + rtnVal + " (" + s +  ")===");
+	    		int modStrLen = s.length()%i;		 //압축 후 남은 str길이
+	    		answer = Math.min(answer, rtnVal.length()+modStrLen);
+	        }
+	        
+	    }
+	    
+	    return answer;
 	}
 }
 /*
