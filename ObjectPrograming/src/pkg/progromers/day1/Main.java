@@ -25,23 +25,23 @@ public class Main {
 		Solution2 s2 = new Solution2();
 		
 		
-		//aabbaccc					7 		2a2ba3c
+		//aabbaccc					7 		
 		//ababcdcdababcdcd			9		2ababcdcd
 		//abcabcdede				8		2abcdede
 		//abcabcabcabcdededededede	14		4abcdededededede	abcabcabcabc6de
 		//xababcdcdababcdcd			17
 		
 		
-		System.out.println(s2.solution("aabbaccc"));
-		/*
+		System.out.println(s2.solution("aabbaccc"));	
 		System.out.println(s2.solution("ababcdcdababcdcd"));
 		System.out.println(s2.solution("abcabcdede"));
 		System.out.println(s2.solution("abcabcabcabcdededededede"));
 		System.out.println(s2.solution("xababcdcdababcdcd"));
-		*/
+
 		
 		
 		
 	}
 
 }
+

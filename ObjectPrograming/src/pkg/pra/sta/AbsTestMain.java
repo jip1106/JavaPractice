@@ -8,6 +8,11 @@ public class AbsTestMain extends AbsTestClass {
 		atm.test2();
 		atm.test3();
 		
+		String testStr = "0123456789";
+		System.out.println("substring");
+		System.out.println(testStr.substring(0,1) );
+		System.out.println(testStr.substring(1,2) );
+		System.out.println(testStr.substring(1,3) );
 	}
 
 	@Override
