@@ -1,12 +1,108 @@
 package pkg.progromers.day2;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Solution3 {
     public String[] solution(String[] record) {
-    	//채팅방에 들어오고 나가거나,닉네임을 변경한 기록이 담긴 문자열 배열 record가 매개변수로 주어질 때, 최종적으로 방을 개설한 사람이 보게 되는 메시지를 문자열 배열 형태로 return 
-        String[] answer = {};
+    
+    	//채팅방에 들어오고 나가거나,닉네임을 변경한 기록이 담긴 문자열 배열 record가 매개변수로 주어질 때, 
+    	//최종적으로 방을 개설한 사람이 보게 되는 메시지를 문자열 배열 형태로 return 
+/*    	
+    	record	
+    	[	
+    		"Enter uid1234 Muzi", 
+    		"Enter uid4567 Prodo",
+    		"Leave uid1234",
+    		"Enter uid1234 Prodo",
+    		"Change uid4567 Ryan"
+    	]	
+		
+		- Muzi 님이 들어 왔습니다.																	  Prodo
+		- Prodo 님이 들어왔습니다.																  Ryan
+		- Muzi 님이 나갔습니다.			uid1234 => 아이디로 닉네임을 찾아서 나갔습니다. 를 기록 				  Prodo			
+		- Prodo 님이 들어왔습다. 		uid4567 => 아이디로 기록된 내용을 찾고 , 기록된 내용들을 새로운 닉네임으로 변경    Prodo
+		
+    	result
+    	["Prodo님이 들어왔습니다.", "Ryan님이 들어왔습니다.", "Prodo님이 나갔습니다.", "Prodo님이 들어왔습니다."]
+*/
+    	String[] answer = {};
+        
+        ArrayList<String> idArr = new ArrayList<String>();
+        ArrayList<String> answerList = new ArrayList<String>();
+        
+        //1. Enter는 무조건 기록 (아이디를 기억 해야함 => 해시맵에 key : id , value : 닉네임을 넣는다.)
+        //2. Leave는 아이디로 닉네임을 찾고 찾은 닉네임 기록
+        //3. Change는 아이디로 닉네임을 찾고, 기록되어있는 내용을 수정
+        
+        HashMap<String, String> recordMap = new HashMap<String, String>();	//id , nickname
+       
+        String recordDetArr[] = null;
+        boolean changeNick = false;
+        
+        for(String recordVal : record) {
+        	
+        	recordDetArr = recordVal.split("\\s");
+        	
+        	switch(recordDetArr[0]) {
+	        	case "Enter" : 
+	        			recordMap.put(recordDetArr[1], recordDetArr[2]); 
+	        			answerList.add(recordDetArr[2] + "님이 들어왔습니다.");
+	        			idArr.add(recordDetArr[1]);
+	        			
+	        			break;	
+	        	case "Leave" : 
+	        			answerList.add(recordMap.get(recordDetArr[1]) + "님이 나갔습니다.");
+	        			idArr.add(recordDetArr[1]);
+	        			break;	
+	        	case "Change" : 
+	        			recordMap.put(recordDetArr[1], recordDetArr[2]); 
+	        			break;	
+        	}
+        	/*
+        	25번 이후부터 시간초과로 수정
+        	
+            int i = 0;
+        	
+        	changeNick = (recordDetArr[0].equals("Leave")) ? false : true;
+        	if(changeNick) {
+	        	for(String tmp : answerList) {
+	        		String afterNickName = recordMap.get(recordDetArr[1]);
+	        		
+	    			if(idArr.get(i).equals(recordDetArr[1]) ) {
+	    				answerList.set(i, afterNickName + tmp.substring(tmp.indexOf("님")) );
+	    			}
+	    			
+	    			i++;
+	        	}
+        	}
+        	*/
+        }
+        int i=0;
+        for(String tmp : answerList) {
+    		String afterNickName = recordMap.get(idArr.get(i));
+    		
+    		answerList.set(i, afterNickName + tmp.substring(tmp.indexOf("님")) );
+			
+			i++;
+    	}
+        
+               
+        answer = new String[answerList.size()];
+        i=0;
+        for(String val : answerList) {
+        	System.out.println(val);
+        	answer[i++] = val;      
+        }
+        
+      
+        
         
         return answer;
+        
     }
+    
+
 }
 
 

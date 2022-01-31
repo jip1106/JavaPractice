@@ -13,6 +13,9 @@ public class Main {
 		Solution2 s2 = new Solution2();
 		s2.solution();
 		
+		Solution3 s3 = new Solution3();
+		s3.solution(new String[] {"Enter uid1234 Muzi", "Enter uid4567 Prodo","Leave uid1234","Enter uid1234 Prodo","Change uid4567 Ryan"});
+		
 	}
 
 }
