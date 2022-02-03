@@ -2,9 +2,12 @@ package pkg.collection.main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.PriorityQueue;
 
+import pkg.collection.list.HeapAndQueue;
 import pkg.collection.list.VectorArrayListForEx;
 
 public class CollectionMain {
@@ -132,6 +135,29 @@ public class CollectionMain {
 
 	        collect.forEach((k, v) -> System.out.println(k + ":" + v));
 		*/
+		
+		System.out.println("==================== 우선순위 큐 , 힙 ==================== ");
+		
+		PriorityQueue<HeapAndQueue> pQueue = new PriorityQueue<HeapAndQueue>();
+		
+		
+		int ranDom = 0;
+		
+		for(int i = 0 ; i < 10; i++){
+			ranDom = (int)(Math.random() *10) + 1;
+			
+			System.out.print(ranDom + " // ");
+			System.out.println(i + " 번째 ");
+				
+			pQueue.add(new HeapAndQueue(ranDom,ranDom + "번째"));
+		}
+
+		
+		while (!pQueue.isEmpty()) {
+	    	HeapAndQueue hContent = pQueue.poll();
+            System.out.println("숫자 : " + hContent.getNumber() + " 내용 : " + hContent.getContent());
+        }
+	    
 	}
 
 }
