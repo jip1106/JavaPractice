@@ -2,7 +2,9 @@ package pkg.collection.main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -158,6 +160,28 @@ public class CollectionMain {
             System.out.println("숫자 : " + hContent.getNumber() + " 내용 : " + hContent.getContent());
         }
 	    
+		
+		System.out.println("========날짜테스트========");
+		Calendar calendar = Calendar.getInstance();
+		
+		Date policyEndDate = new Date();	//	2022-12-31 policyEndDate
+		policyEndDate.setYear(2022);
+		policyEndDate.setMonth(12);
+		policyEndDate.setDate(31);
+		
+		Date policyStartDate=  new Date();	// 2022-01-19 policy_start
+		policyStartDate.setYear(2022);
+		policyStartDate.setMonth(1);
+		policyStartDate.setDate(19);
+		
+		System.out.println(calendar.getActualMaximum(Calendar.DATE));
+		
+		calendar.set(Calendar.YEAR, policyEndDate.getYear());
+		calendar.set(Calendar.MONTH, policyEndDate.getMonth() - 1);
+		calendar.set(Calendar.DATE, policyEndDate.getDate());
+		
+		System.out.println(calendar.getActualMaximum(Calendar.DATE));
+		System.out.println("========날짜테스트========");
 	}
 
 }
