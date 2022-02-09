@@ -1,4 +1,4 @@
-package pkg.progromers.day1;
+package pkg.programers.day1;
 
 public class Solution2 {
 	public int solution(String s){

@@ -1,4 +1,4 @@
-package pkg.progromers.day1;
+package pkg.programers.day1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
