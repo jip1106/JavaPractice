@@ -1,5 +1,9 @@
 package pkg.programers.week4;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+
 //행렬의 덧셈은 행과 열의 크기가 같은 두 행렬의 같은 행, 같은 열의 값을 서로 더한 결과가 됩니다. 2개의 행렬 arr1과 arr2를 입력받아, 행렬 덧셈의 결과를 반환하는 함수, solution을 완성해주세요.
 /*
   lv1
@@ -214,7 +218,7 @@ public class Solution1 {
 	 /*
 	  * lv1 문자열 내 p와 y의 개수
 	  * */
-	 public static boolean solution(String s) {
+	 public static boolean solution7(String s) {
 	        boolean answer = true;
 	        int yCnt = 0;
 	        int pCnt = 0;
@@ -234,5 +238,202 @@ public class Solution1 {
 
 	        return answer;
 	    }
+	 
+	 /*
+	  	lv1 나누어 떨어지는 숫자 배열
+	  	
+	  	array의 각 element 중 divisor로 나누어 떨어지는 값을 오름차순으로 정렬한 배열을 반환하는 함수, solution을 작성해주세요.
+		divisor로 나누어 떨어지는 element가 하나도 없다면 배열에 -1을 담아 반환하세요
+	  */
+	   public static int[] solution8(int[] arr, int divisor) {
+	        int[] answer = {};
+	        int answerCnt = 0; 
+	        
+	        if(divisor == 1){
+	        	answer = arr;
+	        }else{
+	        	for(int tmp : arr){
+	        		if((tmp % divisor)==0){
+	        			answerCnt++;
+	        		}
+	        	}
+	        	
+	        	int tmp = 0;
+	        	
+	        	if(answerCnt == 0){
+	        		answer = new int[1];
+	        		answer[0] = -1;
+	        	}else{
+	        		answer = new int[answerCnt];
+	        		
+	        		for(int i=0; i<answer.length;i++){
+	        			for(int j=tmp; j<arr.length; j++){
+	        				if((arr[j] % divisor) == 0){
+	        					tmp = j+1;
+        						answer[i] = arr[j];
+	        					break;	
+
+	        				}
+	        			}
+	        		}
+	        	}
+	        }
+	                	
+        	Arrays.sort(answer);
+        	
+	        
+	        return answer;
+	    }
+	   
+	   /**
+	    	lv1 정수 내림차순으로 배치하기
+	    	정수 n을 매개변수로 입력받습니다. n의 각 자릿수를 큰것부터 작은 순으로 정렬한 새로운 정수를 리턴해주세요. 예를들어 n이 118372면 873211을 리턴하면 됩니다.
+	    */
+	   public static long solution9(long n) {
+	        long answer = 0;
+	        
+	        ArrayList<Long> list = new ArrayList<Long>();
+	        long tmp = n;
+	        
+	        while(tmp != 0 ){
+	        	list.add(tmp%10);
+	        	tmp /=10;
+	        }
+	        
+	        list.sort(Comparator.reverseOrder());
+	        int size = list.size();
+        
+ 
+	        for(int i=0; i<size ;i++){
+	        	answer += list.get(i) * Math.pow(10, size-i-1);  
+	        	
+	        }
+	        
+	        return answer;
+	    }
+	   
+	   /*
+	    * lv1 자릿수 더하기
+	    * */
+	   public static int solution10(int n){
+		   int answer = 0;
+		   
+		   while(n!=0){
+			   answer += n%10;
+			   n /= 10; 
+		   }
+		   
+		   return answer;
+	   }
+	   
+	   /*
+	    * lv1 자연수 뒤집어 배열로 만들기	=> 질문하기.... 
+	    * */
+	   public static int[] solution11(long n){
+		   int[] answer = {};
+		   String tmp = String.valueOf(n);
+		   
+		   char cAnswer[] = tmp.toCharArray();
+		   int size = cAnswer.length;
+		   
+		   answer = new int[size];
+		   int j=0;
+		   for(int i=size-1; i>=0; i--){
+			   answer[j++] = Integer.parseInt(cAnswer[i]+""); 
+		   }
+		   
+		   for(int i=0; i<answer.length;i++){
+			   System.out.print(answer[i]);
+		   }
+		   
+		   /*
+		   int in = (int)n;
+	        
+	       int len = (int) (Math.log10(in)+1);
+	       answer = new int[len];
+	        
+	       int i=0;
+
+	       while(in!=0){
+	          answer[i++] = in%10 ;
+	          in /=10;
+	       }
+	       */
+	       return answer;
+	   }
+	   
+	   /*lv1 정수 제곱근 판별
+	       임의의 양의 정수 n에 대해, n이 어떤 양의 정수 x의 제곱인지 아닌지 판단하려 합니다.
+		n이 양의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고, n이 양의 정수 x의 제곱이 아니라면 -1을 리턴하는 함수를 완성하세요.
+	    * */
+	   public static long solution12(long n){
+	        long answer = 0;
+	        
+	        double tmp = Math.sqrt(n);
+	        
+	        answer = (tmp%1 == 0)? (long)(Math.pow(tmp+1, 2)) : -1;
+	        
+	        /*
+	        if(tmp%1 == 0){
+	        	answer = (long)(Math.pow(tmp+1, 2));
+	        }else{
+	        	answer = -1;
+	        }
+	        */
+	        
+	        return answer;
+	   }
+	   
+	   /*lv1 문자열을 정수로 바꾸기
+	    * 문자열 s를 숫자로 변환한 결과를 반환하는 함수, solution을 완성하세요.
+
+		제한 조건
+		s의 길이는 1 이상 5이하입니다.
+		s의 맨앞에는 부호(+, -)가 올 수 있습니다.
+		s는 부호와 숫자로만 이루어져있습니다.
+		s는 "0"으로 시작하지 않습니다.
+		입출력 예
+		예를들어 str이 "1234"이면 1234를 반환하고, "-1234"이면 -1234를 반환하면 됩니다.
+		str은 부호(+,-)와 숫자로만 구성되어 있고, 잘못된 값이 입력되는 경우는 없습니다.
+	    * */
+	   public static int solution13(String s){
+		   int answer = 0;
+		   answer = Integer.parseInt(s);
+
+		   return answer;
+	   }
+	   
+	   
+	   /*
+	    * 문자열 s는 한 개 이상의 단어로 구성되어 있습니다. 
+	    * 각 단어는 하나 이상의 공백문자로 구분되어 있습니다. 
+	    * 각 단어의 짝수번째 알파벳은 대문자로, 홀수번째 알파벳은 소문자로 바꾼 문자열을 리턴하는 함수, 
+	    * solution을 완성하세요.
+	    * */
+	   public static String solution14(String s) {
+	        String answer = "";
+	        
+	        String []splitArr = s.split(" ", -1);
+	        
+	        int size = splitArr.length;
+	        System.out.println();
+	       
+	        for(int i=0; i<size; i++){
+	        	for(int j=0; j<splitArr[i].length(); j++){
+	        		if(j%2==0){
+	        			answer += String.valueOf(splitArr[i].charAt(j)).toUpperCase();
+	        		}else{
+	        			answer += String.valueOf(splitArr[i].charAt(j)).toLowerCase();
+	        		}
+	        	}
+	        	if(i!= size-1)answer += " ";
+	        }
+	        
+	        System.out.println(answer);
+	        
+	        return answer;
+	    }
+	   
+	  
 
 }
