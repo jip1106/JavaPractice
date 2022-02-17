@@ -54,6 +54,57 @@ public class MainWeek4 {
 		
 		//lv1 이상한 문자 만들기		
 		Solution1.solution14("1");
+		
+		//lv1 약수의 합
+		Solution1.solution15(5);
+		
+		//lv1 시저암호
+		Solution1.solution16("a B z",4);
+		
+		//lv1 소수찾기
+		Solution1.solution17(10);
+		
+		//lv1수박수박수
+		Solution1.solution18(4);
+		
+		//lv1 서울에서 김서방찾기 
+		Solution1.solution19(new String[]{"Park","Kim"});
+		
+		Solution1.solution20("1234a");
+		
+		//lv1 문자열 내림차순으로 배치하기
+		Solution1.solution21("Zbcdefg");
+		
+		//lv1 두 정수 사이의 합
+		Solution1.solution22(1,1000000);		
+		
+		//lv1 같은숫자는 싫어
+		Solution1.solution23(new int[]{1,1,3,3,0,1,1});
+
+		//lv1 가운데 글자 가져오기
+		Solution1.solution25("qwer");
+
+		//lv1 k번째 수		[1, 5, 2, 6, 3, 7, 4]	[[2, 5, 3], [4, 4, 1], [1, 7, 3]]
+		int arr26f[] = {1, 5, 2, 6, 3, 7, 4};
+		int arr26s[][] = {{2, 5, 3}, {4, 4, 1}, {1, 7, 3}};
+		Solution1.solution26(arr26f, arr26s);
+		
+		//lv1 부족한 금액 계산하기
+		Solution1.solution27(3,20,4);
+		
+		//lv1 두 개 뽑아서 더하기
+		int arr27f[] = {2,1,3,4,1};
+		int arr27s[] = {5,0,2,7};
+		Solution1.solution28(arr27s);
+		
+		//lv1 2016년 (윤년)
+		Solution1.solution28(5,24);
+		
+		
+		int[][] arr28f = {{60, 50}, {30, 70}, {60, 30}, {80, 40}};
+		int[][] arr28s = {{10, 7}, {12, 3}, {8, 15}, {14, 7}, {5, 15}};
+		int[][] arr28t = {{14, 4}, {19, 6}, {6, 16}, {18, 7}, {7, 11}};
+		
 	}
 
 }
