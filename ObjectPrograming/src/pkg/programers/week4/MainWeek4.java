@@ -100,10 +100,23 @@ public class MainWeek4 {
 		//lv1 2016년 (윤년)
 		Solution1.solution28(5,24);
 		
+		//lv1 없는숫자더하기
+		int arr29f[] = {3,4,1,6};
+		Solution1.solution29(arr29f);
 		
+		
+		//lv1 폰켓몬
+		int arr30[] = {3,1,2,3};
+		Solution1.solution30(arr30);
+		
+		
+		/*
 		int[][] arr28f = {{60, 50}, {30, 70}, {60, 30}, {80, 40}};
 		int[][] arr28s = {{10, 7}, {12, 3}, {8, 15}, {14, 7}, {5, 15}};
 		int[][] arr28t = {{14, 4}, {19, 6}, {6, 16}, {18, 7}, {7, 11}};
+		*/
+		
+		
 		
 	}
 

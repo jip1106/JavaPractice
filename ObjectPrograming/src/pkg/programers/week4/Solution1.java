@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 //행렬의 덧셈은 행과 열의 크기가 같은 두 행렬의 같은 행, 같은 열의 값을 서로 더한 결과가 됩니다. 2개의 행렬 arr1과 arr2를 입력받아, 행렬 덧셈의 결과를 반환하는 함수, solution을 완성해주세요.
 /*
@@ -873,6 +875,58 @@ public class Solution1 {
 	        
 	        return answer;
 			
+		}
+		
+		//lv1 없는 수 빼기
+		public static int solution29(int[] numbers) {
+	        int answer = -1;
+	        int sum = 45;   //0~9합
+
+	        for(int i=0; i<numbers.length; i++){
+	            sum -= numbers[i];
+	        }
+
+	        answer = sum;
+
+	        return answer;
+	    }
+		
+		//lv1 폰켓몬
+		/*
+			당신은 폰켓몬을 잡기 위한 오랜 여행 끝에, 홍 박사님의 연구실에 도착했습니다. 
+			홍 박사님은 당신에게 자신의 연구실에 있는 총 N 마리의 폰켓몬 중에서 N/2마리를 가져가도 좋다고 했습니다.
+			홍 박사님 연구실의 폰켓몬은 종류에 따라 번호를 붙여 구분합니다. 
+			따라서 같은 종류의 폰켓몬은 같은 번호를 가지고 있습니다. 
+			예를 들어 연구실에 총 4마리의 폰켓몬이 있고, 각 폰켓몬의 종류 번호가 [3번, 1번, 2번, 3번]이라면 	{3,1,2,3}
+			이는 3번 폰켓몬 두 마리, 1번 폰켓몬 한 마리, 2번 폰켓몬 한 마리가 있음을 나타냅니다. 이때, 4마리의 폰켓몬 중 2마리를 고르는 방법은 다음과 같이 6가지가 있습니다.
+			
+			{3,1,2,3} => 
+			3,1
+			3,2
+			3,3
+			
+			1,2
+			1,3
+			2,3
+			
+		 */
+		public static int solution30(int[] nums){
+	        int answer = 0;
+	       
+	       int size = nums.length/2;
+	       
+	       HashSet<Integer> set = new HashSet<Integer>();
+	       //ArrayList<Integer> numList = new ArrayList<Integer>();
+	       
+	       for(int tmp : nums){
+	    	   set.add(tmp);
+	       }
+	       
+	       answer = set.size();
+	       
+	       System.out.println("answer :: " + answer);
+	       
+	       return answer;			
 		}
 		
 		
