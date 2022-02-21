@@ -107,7 +107,9 @@ public class MainWeek4 {
 		
 		//lv1 폰켓몬
 		int arr30[] = {3,1,2,3};
-		Solution1.solution30(arr30);
+		int arr30s[] = {3,3,3,2,2,4};
+		int arr30t[] = {3,3,3,2,2,2};
+		Solution1.solution30(arr30t);
 		
 		
 		/*
@@ -116,7 +118,7 @@ public class MainWeek4 {
 		int[][] arr28t = {{14, 4}, {19, 6}, {6, 16}, {18, 7}, {7, 11}};
 		*/
 		
-		/*거리두기*/
+		/*거리두기
 		System.out.println("거리두기");
 		String places[][] = new String[][]{
  			{"POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"}, 
@@ -127,7 +129,7 @@ public class MainWeek4 {
 		};	
 		
 		new Solution3().solution(places);
-		
+		*/
 		
 	}
 

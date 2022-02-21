@@ -911,7 +911,7 @@ public class Solution1 {
 			
 		 */
 		public static int solution30(int[] nums){
-	        int answer = 0;
+	       int answer = 0;
 	       
 	       int size = nums.length/2;
 	       
@@ -924,7 +924,8 @@ public class Solution1 {
 	       
 	       answer = set.size();
 	       
-	       System.out.println("answer :: " + answer);
+	       answer = (answer > size ) ? size : answer;
+	       System.out.println("폰켓몬 :: " + answer);
 	       
 	       return answer;			
 		}
