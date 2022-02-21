@@ -116,6 +116,17 @@ public class MainWeek4 {
 		int[][] arr28t = {{14, 4}, {19, 6}, {6, 16}, {18, 7}, {7, 11}};
 		*/
 		
+		/*거리두기*/
+		System.out.println("거리두기");
+		String places[][] = new String[][]{
+ 			{"POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"}, 
+ 			{"POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP"}, 
+ 			{"PXOPX", "OXOXP", "OXPOX", "OXXOP", "PXPOX"}, 
+ 			{"OOOXX", "XOOOX", "OOOXX", "OXOOX", "OOOOO"}, 
+ 			{"PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP"}
+		};	
+		
+		new Solution3().solution(places);
 		
 		
 	}
