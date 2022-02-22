@@ -3,7 +3,7 @@ package pkg.programers.week5;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Week4Level1 {
+public class Week5Level1 {
 	
 	//lv1 약수의 개수와 덧셈
 	/*
@@ -64,4 +64,45 @@ public class Week4Level1 {
 		
 		return answer;
 	}
+	
+	//lv1 3진법 뒤집기
+	/*
+		자연수 n이 매개변수로 주어집니다. n을 3진법 상에서 앞뒤로 뒤집은 후, 이를 다시 10진법으로 표현한 수를 return 하도록 solution 함수를 완성해주세요.
+		n은 1 이상 100,000,000 이하인 자연수입니다.
+		n	result
+		45	7
+		125	229
+		
+		n (10진법)	n (3진법)		앞뒤 반전(3진법)	10진법으로 표현
+		45			1200			0021			7
+	 */
+		public static int reverse3Notation(int n) {
+	        int answer = 0;
+	        
+	        StringBuilder sb = new StringBuilder();
+			int current = n;
+			    
+		    while(current >= 1){
+		        sb.append(current % 3);
+		        current /= 3;
+		    }
+	        
+	        System.out.println(sb.toString());
+	        
+	        //0021 앞뒤 반전 한 값
+	        char tmpArr[] = sb.toString().toCharArray();
+	        
+	        for(int i=0; i<tmpArr.length; i++){
+	        	int size = tmpArr.length-i;
+	        	int addSum = ( (int)tmpArr[i] - 48 ) * ((int)Math.pow(3, size-1 ) );
+	        	
+	        	answer += addSum;
+	        }
+	        
+	        
+	        return answer;
+	    }
+		
+		
+	
 }
