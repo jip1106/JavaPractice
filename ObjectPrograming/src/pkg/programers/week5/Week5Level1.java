@@ -1,9 +1,14 @@
 package pkg.programers.week5;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Week5Level1 {
@@ -385,6 +390,252 @@ public class Week5Level1 {
 	        return answer;
 		}
 		
+		//체육복
+		/*
+		  점심시간에 도둑이 들어, 일부 학생이 체육복을 도난당했습니다. 
+		  다행히 여벌 체육복이 있는 학생이 이들에게 체육복을 빌려주려 합니다. 
+		  학생들의 번호는 체격 순으로 매겨져 있어, 
+		  바로 앞번호의 학생이나 바로 뒷번호의 학생에게만 체육복을 빌려줄 수 있습니다. 
+		  예를 들어, 4번 학생은 3번 학생이나 5번 학생에게만 체육복을 빌려줄 수 있습니다. 
+		  체육복이 없으면 수업을 들을 수 없기 때문에 체육복을 적절히 빌려 최대한 많은 학생이 체육수업을 들어야 합니다.
+
+			전체 학생의 수 n, 
+			체육복을 도난당한 학생들의 번호가 담긴 배열 lost, 
+			여벌의 체육복을 가져온 학생들의 번호가 담긴 배열 reserve가 매개변수로 주어질 때, 
+			체육수업을 들을 수 있는 학생의 최댓값을 return 하도록 solution 함수를 작성해주세요.
+	
+			제한사항
+			전체 학생의 수는 2명 이상 30명 이하입니다.
+			체육복을 도난당한 학생의 수는 1명 이상 n명 이하이고 중복되는 번호는 없습니다.
+			여벌의 체육복을 가져온 학생의 수는 1명 이상 n명 이하이고 중복되는 번호는 없습니다.
+			여벌 체육복이 있는 학생만 다른 학생에게 체육복을 빌려줄 수 있습니다.
+			
+			*** 여벌 체육복을 가져온 학생이 체육복을 도난당했을 수 있습니다. 
+			
+			이때 이 학생은 체육복을 하나만 도난당했다고 가정하며, 
+			남은 체육복이 하나이기에 다른 학생에게는 체육복을 빌려줄 수 없습니다.
+		 */
 		
+		//Week5Level1.gymSuit(10, new int[]{1,4,8,9},  new int[]{1,4,5,10,7,3});
+		
+		public static int gymSuit(int n, int[] lost, int[] reserve){
+			int answer = 0;
+	        //n => 전체 학생 수
+	        //lost => 도난당한 학생 번호
+	        //여벌의 체육복을 가져온 학생들의 번호
+	        //Week5Level1.gymSuit(5, new int[]{5,4,2},  new int[]{2,4});
+
+	        ArrayList<Integer> lostList = new ArrayList<Integer>();
+	        ArrayList<Integer> reserveList = new ArrayList<Integer>();
+
+	        //도난 당한 학생 리스트
+	        for(int tmp : lost){
+	            lostList.add(tmp);
+	        }
+				
+	        //빌려줄 수 있는 학생 리스트
+	        for(int tmp : reserve){
+	            reserveList.add(tmp);
+	        }
+	        
+	        /**********테스트데이터13 18*************/
+	        Collections.sort(lostList);
+	        Collections.sort(reserveList);
+	        /***********************/
+	        
+	        				
+	        for(int i=0; i<lostList.size(); i++){	//잃어버린 학생 번호
+	            int lostNum = lostList.get(i);
+	        
+	            //빌려줄 수 있는 학생 리스트 수정
+	            for(int j = 0; j<reserveList.size(); j++){
+	                if(reserveList.get(j) == lostNum ){
+	                    reserveList.remove(j);
+	                    lostList.remove(i);
+	                    /**********테스트데이터13 18*************/
+	                    i--;
+	                }
+	            }
+	            
+	        }
+	        	
+	        for(int i=0; i<reserveList.size(); i++){	//빌려줄 수 있는 학생 리스트
+	            int reserveNum = reserveList.get(i);
+
+	            //도난 당한 학생 리스트 수정
+	            for(int j=0; j<lostList.size(); j++){
+	                if(lostList.get(j) == reserveNum -1 || lostList.get(j) == reserveNum + 1 || lostList.get(j) == reserveNum){
+	                    lostList.remove(j);
+	                    break;
+	                }
+	            }
+	        }
+				
+			answer = n - lostList.size();
+			
+			System.out.println(answer);
+
+	        return answer;
+		}
+		
+		
+		
+		//
+		/*
+		 * 슈퍼 게임 개발자 오렐리는 큰 고민에 빠졌다. 
+		 * 그녀가 만든 프랜즈 오천성이 대성공을 거뒀지만, 요즘 신규 사용자의 수가 급감한 것이다. 
+		 * 원인은 신규 사용자와 기존 사용자 사이에 스테이지 차이가 너무 큰 것이 문제였다.
+
+			이 문제를 어떻게 할까 고민 한 그녀는 동적으로 게임 시간을 늘려서 난이도를 조절하기로 했다. 역시 슈퍼 개발자라 대부분의 로직은 쉽게 구현했지만, 실패율을 구하는 부분에서 위기에 빠지고 말았다.
+			오렐리를 위해 실패율을 구하는 코드를 완성하라.
+			
+			실패율은 다음과 같이 정의한다.
+				** 스테이지에 도달했으나 아직 클리어하지 못한 플레이어의 수 / 스테이지에 도달한 플레이어 수
+			
+			전체 스테이지의 개수 N, 
+			게임을 이용하는 사용자가 현재 멈춰있는 스테이지의 번호가 담긴 배열 stages가 매개변수로 주어질 때, 
+			실패율이 높은 스테이지부터 내림차순으로 
+			스테이지의 번호가 담겨있는 배열을 return 하도록 solution 함수를 완성하라.
+			
+			제한사항
+			스테이지의 개수 N은 1 이상 500 이하의 자연수이다.
+			stages의 길이는 1 이상 200,000 이하이다.
+			stages에는 1 이상 N + 1 이하의 자연수가 담겨있다.
+			
+			각 자연수는 사용자가 현재 도전 중인 스테이지의 번호를 나타낸다.
+			단, N + 1 은 마지막 스테이지(N 번째 스테이지) 까지 클리어 한 사용자를 나타낸다.
+			만약 실패율이 같은 스테이지가 있다면 작은 번호의 스테이지가 먼저 오도록 하면 된다.
+			스테이지에 도달한 유저가 없는 경우 해당 스테이지의 실패율은 0 으로 정의한다.
+			
+			입출력 예
+			N		stages						result
+			5	[2,1,2,6,2,4,3,3]			[3,4,2,1,5]
+			4	[4,4,4,4,4]					[4,1,2,3]
+			
+			입출력 예 설명
+			입출력 예 #1
+			1번 스테이지에는 총 8명의 사용자가 도전했으며, 이 중 1명의 사용자가 아직 클리어하지 못했다. 따라서 1번 스테이지의 실패율은 다음과 같다.
+			
+			1 번 스테이지 실패율 : 1/8
+			2번 스테이지에는 총 7명의 사용자가 도전했으며, 이 중 3명의 사용자가 아직 클리어하지 못했다. 따라서 2번 스테이지의 실패율은 다음과 같다.
+			
+			2 번 스테이지 실패율 : 3/7
+			마찬가지로 나머지 스테이지의 실패율은 다음과 같다.
+			
+			3 번 스테이지 실패율 : 2/4
+			4번 스테이지 실패율 : 1/2
+			5번 스테이지 실패율 : 0/1
+			각 스테이지의 번호를 실패율의 내림차순으로 정렬하면 다음과 같다.
+			
+			[3,4,2,1,5]
+			입출력 예 #2
+			
+			모든 사용자가 마지막 스테이지에 있으므로 4번 스테이지의 실패율은 1이며 나머지 스테이지의 실패율은 0이다.
+			
+			[4,1,2,3]
+			
+			N : 전체 스테이지 개수
+			실패율은 다음과 같이 정의한다.
+				** 스테이지에 도달했으나 아직 클리어하지 못한 플레이어의 수 / 스테이지에 도달한 플레이어 수
+		 */
+		//1,2,2,1,3
+		 public static int[] failureRate(int N, int[] stages) {
+			 int[] answer = new int[N];
+			 
+			 int stageSize = stages.length;			//사용자의 수
+			 int nowSize = 0;
+			 int passSize = 0;
+			 Double []failureRate = new Double[N];
+			 
+			 // N : 5 	스테이지 : 0,1,2,3,4 ...
+			 for(int i=1; i<=N; i++){	//스테이지 갯수 만큼 for문
+				 nowSize = 0;
+				 passSize = 0;
+				 
+				 for(int j=0; j<stageSize; j++){
+					 int nowStage = stages[j];
+					 
+					 if(nowStage == i){
+						 nowSize++;
+						 passSize++;
+					 }else if(nowStage > i ){
+						 passSize++;
+					 }
+				 }
+				 System.out.print("nowSize :: " + nowSize + " /// passSize :: " + passSize);				 
+				 System.out.println();
+				 
+				 if(passSize == 0){
+					 failureRate[i-1] = 0.0;
+				 }else{
+					 failureRate[i-1] = (double)nowSize/(double)passSize;
+				 }
+				 
+
+			 }
+			 
+			 print(failureRate);
+			 
+			 
+			HashMap<Integer , Double> hMap = new HashMap<Integer, Double>();
+			for(int i=0; i<failureRate.length;i++){
+				hMap.put(i+1,failureRate[i]);	
+			}
+			//실패율 내림차순 정렬
+			Arrays.sort(failureRate, Collections.reverseOrder());
+			
+			List<Integer> listKeySet = new ArrayList<Integer>(hMap.keySet());
+			
+			//********** 값 기준으로 key 내림차순 정렬하기 Collections.sort 확인 필요
+			Collections.sort(listKeySet, (key, value) -> (hMap.get(value).compareTo(hMap.get(key)))); 
+				
+			int i=0;
+			for(Integer key : listKeySet) {
+				answer[i++] = key;
+			}
+			
+			print(answer);
+			
+			
+			return answer;
+		}
+		
+		
+		
+		
+		//리스트 출력 함수
+		private static void print(Object obj){
+			System.out.println();
+			if( obj instanceof ArrayList){
+				ArrayList<Object> list = (ArrayList<Object>)obj;
+				for(Object tmp : list){
+					System.out.print(tmp + " , ");
+				}
+			}else if(obj instanceof int[]){
+				
+				int tmpArr[] = (int[])obj;
+				
+				for(int i=0; i<tmpArr.length; i++){
+					System.out.print(tmpArr[i] + " , ");
+				}
+			}else if(obj instanceof double[]){
+				
+				double tmpArr[] = (double[])obj;
+				
+				for(int i=0; i<tmpArr.length; i++){
+					System.out.print(tmpArr[i] + " , ");
+				}
+			}else if(obj instanceof Double[]){
+				
+				Double tmpArr[] = (Double[])obj;
+				
+				for(int i=0; i<tmpArr.length; i++){
+					System.out.print(tmpArr[i] + " , ");
+				}
+			}
+			
+			
+			
+		}
 	
 }
