@@ -36,8 +36,9 @@ public class MainWeek5 {
 		
 		//Week5Level1.failureRate(5, new int[]{2,1,2,6,2,4,3,3});
 		Week5Level1.failureRate(4, new int[]{4,4,4,4,4});
-		*/
+		
 		Week5Level1.failureRate(5, new int[]{1,2,2,1,3}); //3,2,1,4,5
+		*/
 				
 		
 //		[6, 10, 2]	"6210"
@@ -48,6 +49,23 @@ public class MainWeek5 {
 		Week5Work1.mostBigNumber(new int[]{3, 30, 34, 5, 9});
 		*/
 		
+		Week5Work2.arrayRotation( 6, 6, new int[][]{ 
+			{2,2,5,4},
+			{3,3,6,6},
+			{5,1,6,3}
+								});
+		/*
+		Week5Work2.arrayRotation(3, 3, new int[][]{ 
+			{1,1,2,2},
+			{1,2,2,3},
+			{2,1,3,2}
+								});
+		
+		
+		Week5Work2.arrayRotation(100, 97, new int[][]{ 
+			{1,1,100,97}
+								});
+		*/
 		
 	}
 }

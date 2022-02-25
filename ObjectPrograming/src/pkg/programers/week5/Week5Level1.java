@@ -604,7 +604,7 @@ public class Week5Level1 {
 		
 		
 		//리스트 출력 함수
-		private static void print(Object obj){
+		public static void print(Object obj){
 			System.out.println();
 			if( obj instanceof ArrayList){
 				ArrayList<Object> list = (ArrayList<Object>)obj;

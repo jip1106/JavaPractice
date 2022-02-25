@@ -1,5 +1,10 @@
 package pkg.programers.week5;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import pkb.common.Common;
+
 //행렬 테두리 회전하기
 /*
 
@@ -18,14 +23,56 @@ x1 행 y1 열부터 x2 행 y2 열까지의 영역에 해당하는 직사각형에서 테두리에 있는 숫�
 
 이 행렬에 (2, 2, 5, 4) 회전을 적용하면, 아래 그림과 같이 2행 2열부터 5행 4열까지 영역의 테두리가 시계방향으로 회전합니다. 이때, 중앙의 15와 21이 있는 영역은 회전하지 않는 것을 주의하세요.
 
+
+	{2,2,5,4},
+	{3,3,6,6},
+	{5,1,6,3}
+			
  * */
 public class Week5Work2 {
-	public static int[] solution(int rows, int columns, int[][] queries) {
-        int[] answer = {};
-        return answer;
-    }
-	
-	
-	
+	public static int[] arrayRotation(int rows, int columns, int[][] queries) {
+		int[] answer = new int[queries.length];
+		
+		int arrVal[][] = new int[rows][columns];
+		
+		int num = 0;
+		//인덱스를 배열 인덱스에 맞게 뒤집었기 때문에 셋팅을 다르게 해줘야한다..........
+		for(int i=0; i<rows; i++){
+			for(int j=0; j<columns; j++){
+				arrVal[i][j] = ++num;
+			}
+		}
+		
+		for(int i=0; i<arrVal.length; i++){
+			for(int j=0; j<arrVal[i].length;j++){
+				System.out.print(arrVal[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
 
+		int tmpArrVal[][] = Arrays.copyOf(arrVal, arrVal.length);
+		
+		for(int i=0; i<queries.length;i++){
+			int arrXY[] = queries[i];	//2,2		5,4
+			
+			//실제 배열에 맞게 인덱스 뒤집기
+			int x1 = arrXY[1] - 1; 
+			int y1 = arrXY[0] - 1;
+			int x2 = arrXY[3] - 1;
+			int y2 = arrXY[2] - 1;
+			
+			System.out.println("(x1,y1)" + "(" + x1 + "," + y1 + ")");
+			System.out.println("(x2,y2)" + "(" + x2 + "," + y2 + ")");
+			System.out.println();
+			//윗변
+			for(int j=y1; j<=x2; j++){ 
+				System.out.println("arrVal[" + j + "][" + y1 +  "]" + arrVal[j][y1]);
+			}
+			
+			
+		}
+		
+        return answer;
+	}
 }
