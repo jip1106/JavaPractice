@@ -36,7 +36,6 @@ public class Week5Work2 {
 		int arrVal[][] = new int[rows][columns];
 		
 		int num = 0;
-		//인덱스를 배열 인덱스에 맞게 뒤집었기 때문에 셋팅을 다르게 해줘야한다..........
 		for(int i=0; i<rows; i++){
 			for(int j=0; j<columns; j++){
 				arrVal[i][j] = ++num;
@@ -49,30 +48,54 @@ public class Week5Work2 {
 			}
 			System.out.println();
 		}
-		
-
-		int tmpArrVal[][] = Arrays.copyOf(arrVal, arrVal.length);
-		
+	
+		//2,2 	-	5,4	=>4,3
 		for(int i=0; i<queries.length;i++){
 			int arrXY[] = queries[i];	//2,2		5,4
 			
-			//실제 배열에 맞게 인덱스 뒤집기
-			int x1 = arrXY[1] - 1; 
-			int y1 = arrXY[0] - 1;
-			int x2 = arrXY[3] - 1;
-			int y2 = arrXY[2] - 1;
+			int x1 = arrXY[0] - 1; 
+			int y1 = arrXY[1] - 1;
+			int x2 = arrXY[2] - 1;
+			int y2 = arrXY[3] - 1;
+			
+			int tmp = arrVal[x1][y1];
+			int min = arrVal[x1][y1];
 			
 			System.out.println("(x1,y1)" + "(" + x1 + "," + y1 + ")");
 			System.out.println("(x2,y2)" + "(" + x2 + "," + y2 + ")");
-			System.out.println();
-			//윗변
-			for(int j=y1; j<=x2; j++){ 
-				System.out.println("arrVal[" + j + "][" + y1 +  "]" + arrVal[j][y1]);
+			
+			//왼쪽변 ↑
+			for(int j=x1; j<x2; j++){
+				arrVal[j][y1] = arrVal[j+1][y1];
+				min = Math.min(min, arrVal[j][y1]);
 			}
-			
-			
+			//아래 변 ←
+			for(int j=y1;j<y2;j++) {
+				arrVal[x2][j] = arrVal[x2][j+1];
+		        min = Math.min(min, arrVal[x2][j]);
+			}
+			//오른쪽변 ↓
+			for(int j=x2;j>x1;j--) {
+				arrVal[j][y2] = arrVal[j-1][y2];
+	            min = Math.min(min, arrVal[j][y2]);
+	        }
+			//우측 변 →
+	        for(int j=y2;j>y1;j--) {
+	            arrVal[x1][j] = arrVal[x1][j-1];
+	            min = Math.min(min, arrVal[x1][j]);
+	        }
+	        
+	        arrVal[x1][y1+1]  = tmp;
+	        
+			answer[i] = min;
 		}
 		
+		
         return answer;
+	}
+	
+	public static boolean chkIdx(int a, int b,int rows, int columns){
+		return  (a >=0 && a <= rows-1) && (b >= 0 && b<= columns-1);
+		
 	}
 }
