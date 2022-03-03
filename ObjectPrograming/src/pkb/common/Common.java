@@ -33,6 +33,8 @@ public class Common {
 				System.out.print(tmpArr[i] + " , ");
 			}
 		}
+		
+		System.out.println();
 	}
 	
 

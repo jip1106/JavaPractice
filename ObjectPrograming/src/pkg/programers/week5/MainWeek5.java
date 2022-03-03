@@ -44,17 +44,17 @@ public class MainWeek5 {
 //		[6, 10, 2]	"6210"
 //		[3, 30, 34, 5, 9]	"9534330"
 		
-		/*
+		
 		Week5Work1.mostBigNumber(new int[]{6,10,2});
 		Week5Work1.mostBigNumber(new int[]{3, 30, 34, 5, 9});
-		*/
 		
+		/*
 		Week5Work2.arrayRotation( 6, 6, new int[][]{ 
 			{2,2,5,4},
 			{3,3,6,6},
 			{5,1,6,3}
 								});
-		/*
+		
 		Week5Work2.arrayRotation(3, 3, new int[][]{ 
 			{1,1,2,2},
 			{1,2,2,3},
@@ -65,6 +65,13 @@ public class MainWeek5 {
 		Week5Work2.arrayRotation(100, 97, new int[][]{ 
 			{1,1,100,97}
 								});
+		*/
+		
+		
+		/* 배열 sort, comparator테스트
+		
+		ArraySortComparatorTest asct = new ArraySortComparatorTest();
+		asct.arraySortTest();
 		*/
 		
 	}

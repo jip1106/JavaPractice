@@ -29,6 +29,7 @@ public class Week5Work1 {
 		int size = numbers.length;
 		
 		StringBuilder sb = new StringBuilder();
+		
 		String strNumbers[] = new String[size];
 		
 		//String 배열로 변경
@@ -36,7 +37,8 @@ public class Week5Work1 {
 			strNumbers[i] = String.valueOf(numbers[i]);
 		}
 		
-		//내림차순 정렬
+		
+		//내림차순 정렬		https://velog.io/@neity16/Java-%EA%B8%B0%EB%B3%B83-Comparable-Comparator-%EC%B0%A8%EC%9D%B4%EC%A0%90
 		Arrays.sort(strNumbers, new Comparator<String>() {
 			@Override
 			public int compare(String o1, String o2) {
@@ -56,7 +58,35 @@ public class Week5Work1 {
 	
 		answer = sb.toString();
 		
-		System.out.println(answer);
+		System.out.println("answer  : " + answer);
+		
+		
+		
+		//처음 한 방법...
+		/*
+		StringBuilder sb2 = new StringBuilder();
+		ArrayList<String> arrStrList = new ArrayList<String>();
+		
+		//String 배열로 변경
+		for(int i=0; i<size; i++) {
+			//처음 한 방법...
+			//arrStrList.add(strNumbers[i]);
+		}
+		
+		//처음 한 방법...				
+		//Collections.sort(arrStrList, Collections.reverseOrder());
+		
+		for(int j=0; j<size; j++) {
+			sb2.append(arrStrList.get(j));
+		}
+		
+		if("0".equals(answer.substring(0,1))){
+			answer2  = "0";
+		}
+		
+		System.out.println("answer2 : " + answer2);
+		*/
+		
         return answer;
 	}
 
