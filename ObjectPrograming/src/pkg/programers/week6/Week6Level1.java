@@ -33,26 +33,34 @@ public class Week6Level1 {
         Stack<Integer> resultStack = new Stack<Integer>();
         
         int size = moves.length;
+        int length = board.length;
         int insertValue =0;
         int j=0;
+    
         
         for(int i=0; i<size; i++){
         	j=0;
-        	
+
         	while(board[j][moves[i]-1] == 0){
-        		System.out.println("board[" + j + "][" + (moves[i]-1) + "] : " + board[j][moves[i]-1]);
-        		j++;
+        		j=j+1;
         		
+        		if(j>=length-1){
+        			break;
+        		}
         	}
-        	System.out.println("===============");
-        	System.out.println("board[" + (j+1) + "][" + (moves[i]-1) + "] : " + board[j][moves[i]-1]);
         	insertValue = board[j][moves[i]-1];
-        	System.out.println("j ::" + j + " /// insertValue :: " + insertValue );
+        	board[j][moves[i]-1] = 0;
         	
         	
+        	if(insertValue != 0){	//문제 조건 잘 읽기
+	        	if(!resultStack.empty() && resultStack.peek() == insertValue){
+	        		resultStack.pop();
+	        		answer+=2;
+	        	}else{
+	        		resultStack.push(insertValue);
+	        	}
+        	}
         }
-        
-        
         
         return answer;
     
